@@ -1,62 +1,47 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import AppointmentModal from "../AppointmentModal/AppointmentModal";
 
 export default function Header() {
+
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <header className="bg-white border-b">
-
-      <div className="max-w-[1300px] mx-auto px-4">
-
-        <div className="flex items-center justify-between h-[80px]">
+    <>
+      <header className="bg-white shadow">
+        <div className="max-w-[1300px] mx-auto flex items-center justify-between py-4">
 
           {/* Logo */}
-
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/logo.png"
-              alt="Logo"
-              width={150}
-              height={40}
-            />
-          </Link>
+          <div className="text-xl font-bold">
+            Logo
+          </div>
 
           {/* Menu */}
-
-          <nav className="hidden md:flex gap-8 font-medium">
-
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
-
-            <Link href="/about" className="hover:text-blue-600">
-              About
-            </Link>
-
-            <Link href="/doctors" className="hover:text-blue-600">
-              Doctors
-            </Link>
-
-            <Link href="/contact" className="hover:text-blue-600">
-              Contact
-            </Link>
-
+          <nav className="flex gap-8">
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
+            <Link href="/doctors">Doctors</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
 
           {/* Button */}
-
-          <Link
-            href="/contact"
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+          <button
+            onClick={() => setOpenModal(true)}
+            className="bg-blue-600 text-white px-6 py-2 rounded"
           >
             Book Appointment
-          </Link>
+          </button>
 
         </div>
+      </header>
 
-      </div>
-
-    </header>
+      {/* Modal */}
+      <AppointmentModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+      />
+    </>
   );
 }
