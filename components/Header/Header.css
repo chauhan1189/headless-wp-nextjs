@@ -1,0 +1,24 @@
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #000;
+}
+
+.call-btn {
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
