@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { SITE_NAME, SITE_DESCRIPTION } from "../lib/config";
+import type { ReactNode } from "react";
 
 export const metadata = {
   title: {
@@ -11,7 +12,11 @@ export const metadata = {
   description: SITE_DESCRIPTION,
 };
 
-export default function RootLayout({ children }) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
