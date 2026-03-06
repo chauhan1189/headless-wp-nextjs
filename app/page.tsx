@@ -1,6 +1,19 @@
 import Link from "next/link";
 
-async function getDoctors() {
+type Doctor = {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  _embedded?: {
+    "wp:featuredmedia"?: {
+      source_url: string;
+    }[];
+  };
+};
+
+async function getDoctors(): Promise<Doctor[]> {
   const res = await fetch(
     "http://headless-wp.local/wp-json/wp/v2/teams?per_page=3&_embed",
     { cache: "no-store" }
@@ -159,7 +172,7 @@ export default async function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-10">
 
-            {doctors.map((doctor) => {
+            {doctors.map((doctor: Doctor) => {
               const image =
                 doctor._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
